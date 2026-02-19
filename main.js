@@ -284,19 +284,10 @@
   window.qGoBack = qGoBack;
   window.qRetake = qRetake;
 
-  // Product card video hover
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.product-card').forEach(function(card) {
-      var video = card.querySelector('.product-card-video');
-      if (!video) return;
-      video.muted = true;
-      card.addEventListener('mouseenter', function() {
-        video.currentTime = 0;
-        video.play();
-      });
-      card.addEventListener('mouseleave', function() {
-        video.pause();
-        video.currentTime = 0;
-      });
-    });
+  // video hover
+  document.querySelectorAll('.product-card').forEach(function(c){
+    var v = c.querySelector('.pv');
+    if(!v) return;
+    c.addEventListener('mouseenter', function(){ v.muted=true; v.play(); });
+    c.addEventListener('mouseleave', function(){ v.pause(); v.currentTime=0; });
   });
