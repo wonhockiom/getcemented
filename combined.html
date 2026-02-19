@@ -35,19 +35,21 @@ body {
   width: 12px; height: 12px;
   background: var(--terra);
   border-radius: 50%;
-  position: fixed; top: 0; left: 0;
+  position: fixed; top: -100px; left: -100px;
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
   mix-blend-mode: normal;
+  opacity: 0;
 }
 .cursor-ring {
   width: 36px; height: 36px;
   border: 1px solid rgba(196,98,45,0.5);
   border-radius: 50%;
-  position: fixed; top: 0; left: 0;
+  position: fixed; top: -100px; left: -100px;
   pointer-events: none; z-index: 9998;
   transform: translate(-50%, -50%);
+  opacity: 0;
   transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
 }
 body:hover .cursor { opacity: 1; }
@@ -974,6 +976,57 @@ footer {
   .q-results-header, .q-results-cta { grid-template-columns: 1fr; }
   .quiz-overlay-body { padding: 40px 16px; }
 }
+
+/* ─── PRODUCT CARD VIDEO HOVER ──────────────────── */
+
+.product-card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.product-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(30,26,22,0.92) 0%,
+    rgba(30,26,22,0.5) 50%,
+    rgba(30,26,22,0.15) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+.product-card:hover .product-card-video,
+.product-card:hover .product-card-overlay {
+  opacity: 1;
+}
+.product-card .product-num,
+.product-card .product-name,
+.product-card .product-desc,
+.product-card .product-icon-area,
+.product-card .product-tag,
+.product-card .product-arrow {
+  position: relative;
+  z-index: 3;
+}
+.product-card:hover .product-num {
+  color: rgba(212,201,184,0.12);
+}
+.product-card:hover .product-name {
+  color: var(--white);
+}
+.product-card:hover .product-desc {
+  color: rgba(212,201,184,0.75);
+}
+
 </style>
 </head>
 <body>
@@ -1092,7 +1145,7 @@ footer {
             </div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;">
-            <a href="#" class="q-btn-claim">
+            <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="q-btn-claim">
               Claim My Box
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
@@ -1242,6 +1295,8 @@ footer {
 
   <div class="product-grid">
     <div class="product-card reveal reveal-delay-1">
+      <video class="product-card-video" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" data-local="videos/face-wash.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="product-card-overlay"></div>
       <div class="product-num">01</div>
       <div class="product-icon-area">
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
@@ -1258,6 +1313,8 @@ footer {
     </div>
 
     <div class="product-card reveal reveal-delay-2">
+      <video class="product-card-video" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" data-local="videos/moisturizer.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="product-card-overlay"></div>
       <div class="product-num">02</div>
       <div class="product-icon-area">
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
@@ -1275,6 +1332,8 @@ footer {
     </div>
 
     <div class="product-card reveal reveal-delay-3">
+      <video class="product-card-video" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" data-local="videos/beard-oil.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="product-card-overlay"></div>
       <div class="product-num">03</div>
       <div class="product-icon-area">
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
@@ -1289,6 +1348,8 @@ footer {
     </div>
 
     <div class="product-card reveal">
+      <video class="product-card-video" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" data-local="videos/bonus-item.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="product-card-overlay"></div>
       <div class="product-num">04</div>
       <div class="product-icon-area">
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
@@ -1304,6 +1365,8 @@ footer {
     </div>
 
     <div class="product-card reveal reveal-delay-1">
+      <video class="product-card-video" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" data-local="videos/ritual-card.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="product-card-overlay"></div>
       <div class="product-num">05</div>
       <div class="product-icon-area">
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
@@ -1416,7 +1479,7 @@ footer {
         <li>Free shipping over $50</li>
         <li>Skip or pause anytime</li>
       </ul>
-      <a href="#" onclick="openQuiz();return false;" class="pricing-btn btn-outline-cement">Get Started</a>
+      <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="pricing-btn btn-outline-cement">Get Started</a>
     </div>
 
     <!-- Premium — Featured -->
@@ -1434,7 +1497,7 @@ footer {
         <li>Priority access to new drops</li>
         <li>Members-only discount on DTC store</li>
       </ul>
-      <a href="#" onclick="openQuiz();return false;" class="pricing-btn btn-solid-raw">Start Premium</a>
+      <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="pricing-btn btn-solid-raw">Start Premium</a>
     </div>
 
     <!-- Annual -->
@@ -1450,73 +1513,25 @@ footer {
         <li>Founding member badge + perks</li>
         <li>First access to new product lines</li>
       </ul>
-      <a href="#" onclick="openQuiz();return false;" class="pricing-btn btn-outline-cement">Lock It In</a>
+      <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="pricing-btn btn-outline-cement">Lock It In</a>
     </div>
   </div>
 
   <div style="margin-top:48px;padding:32px 40px;background:var(--raw-mid);border:1px solid rgba(212,201,184,0.07);border-radius:2px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;" class="reveal">
     <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--terra);">FOUNDING MEMBER OFFER</div>
     <div style="font-size:14px;font-weight:300;color:rgba(212,201,184,0.6);max-width:400px;">First 100 subscribers lock in 20% off for life. Once they're gone, the price goes up. <strong style="color:var(--cement);">Only 40 spots remaining.</strong></div>
-    <a href="#" onclick="openQuiz();return false;" class="btn-primary" style="margin-left:auto;">Claim Your Spot →</a>
+    <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="btn-primary" style="margin-left:auto;">Claim Your Spot →</a>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="section-testimonials">
-  <div class="section-tag reveal">What They're Saying</div>
-  <div class="section-headline reveal">REAL RESULTS.</div>
-
-  <div class="testimonial-grid">
-    <div class="testimonial-card reveal">
-      <div class="testimonial-stars">
-        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
-      </div>
-      <div class="testimonial-text">"First moisturizer I've ever used that doesn't leave that grey cast. My skin actually looks like mine after. Game changer."</div>
-      <div class="testimonial-author">
-        <div class="author-avatar">M</div>
-        <div>
-          <span class="author-name">Marcus T.</span>
-          <span class="author-sub">Founding Member · Atlanta, GA</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-card reveal reveal-delay-1">
-      <div class="testimonial-stars">
-        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
-      </div>
-      <div class="testimonial-text">"The razor bump issue I had for 10 years is basically gone. I didn't think a grooming box was the answer but here we are."</div>
-      <div class="testimonial-author">
-        <div class="author-avatar">D</div>
-        <div>
-          <span class="author-name">Darius W.</span>
-          <span class="author-sub">Premium Member · Houston, TX</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-card reveal reveal-delay-2">
-      <div class="testimonial-stars">
-        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
-      </div>
-      <div class="testimonial-text">"Finally something built for us. I've spent years buying stuff that just didn't work. This actually works. Period."</div>
-      <div class="testimonial-author">
-        <div class="author-avatar">J</div>
-        <div>
-          <span class="author-name">Jordan R.</span>
-          <span class="author-sub">Essential Member · Chicago, IL</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- RITUAL CTA -->
 <section class="section-ritual">
   <div class="ritual-content">
     <div class="ritual-headline">CEMENT<br>YOUR RITUAL.</div>
     <div class="ritual-sub">Stop using products that weren't made for you. Start a grooming ritual that was built from the ground up for your skin.</div>
-    <a href="#" onclick="openQuiz();return false;" class="ritual-btn">
+    <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="ritual-btn">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Start Your Box Today
     </a>
@@ -1578,6 +1593,8 @@ footer {
     mx = e.clientX; my = e.clientY;
     cursor.style.left = mx + 'px';
     cursor.style.top = my + 'px';
+    cursor.style.opacity = '1';
+    ring.style.opacity = '1';
   });
 
   function animateRing() {
@@ -1852,6 +1869,24 @@ footer {
   window.qGoNext = qGoNext;
   window.qGoBack = qGoBack;
   window.qRetake = qRetake;
+
+  // Product card video hover
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.product-card').forEach(function(card) {
+      var video = card.querySelector('.product-card-video');
+      if (!video) return;
+      video.muted = true;
+      card.addEventListener('mouseenter', function() {
+        video.currentTime = 0;
+        video.play();
+      });
+      card.addEventListener('mouseleave', function() {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  });
+
 </script>
 </body>
 </html>

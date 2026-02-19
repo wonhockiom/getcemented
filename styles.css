@@ -27,19 +27,21 @@ body {
   width: 12px; height: 12px;
   background: var(--terra);
   border-radius: 50%;
-  position: fixed; top: 0; left: 0;
+  position: fixed; top: -100px; left: -100px;
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
   mix-blend-mode: normal;
+  opacity: 0;
 }
 .cursor-ring {
   width: 36px; height: 36px;
   border: 1px solid rgba(196,98,45,0.5);
   border-radius: 50%;
-  position: fixed; top: 0; left: 0;
+  position: fixed; top: -100px; left: -100px;
   pointer-events: none; z-index: 9998;
   transform: translate(-50%, -50%);
+  opacity: 0;
   transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
 }
 body:hover .cursor { opacity: 1; }
@@ -965,4 +967,54 @@ footer {
   .opts-grid.c2, .opts-grid.c3 { grid-template-columns: 1fr; }
   .q-results-header, .q-results-cta { grid-template-columns: 1fr; }
   .quiz-overlay-body { padding: 40px 16px; }
+}
+
+/* ─── PRODUCT CARD VIDEO HOVER ──────────────────── */
+
+.product-card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.product-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(30,26,22,0.92) 0%,
+    rgba(30,26,22,0.5) 50%,
+    rgba(30,26,22,0.15) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+.product-card:hover .product-card-video,
+.product-card:hover .product-card-overlay {
+  opacity: 1;
+}
+.product-card .product-num,
+.product-card .product-name,
+.product-card .product-desc,
+.product-card .product-icon-area,
+.product-card .product-tag,
+.product-card .product-arrow {
+  position: relative;
+  z-index: 3;
+}
+.product-card:hover .product-num {
+  color: rgba(212,201,184,0.12);
+}
+.product-card:hover .product-name {
+  color: var(--white);
+}
+.product-card:hover .product-desc {
+  color: rgba(212,201,184,0.75);
 }

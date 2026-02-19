@@ -7,6 +7,8 @@
     mx = e.clientX; my = e.clientY;
     cursor.style.left = mx + 'px';
     cursor.style.top = my + 'px';
+    cursor.style.opacity = '1';
+    ring.style.opacity = '1';
   });
 
   function animateRing() {
@@ -281,3 +283,20 @@
   window.qGoNext = qGoNext;
   window.qGoBack = qGoBack;
   window.qRetake = qRetake;
+
+  // Product card video hover
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.product-card').forEach(function(card) {
+      var video = card.querySelector('.product-card-video');
+      if (!video) return;
+      video.muted = true;
+      card.addEventListener('mouseenter', function() {
+        video.currentTime = 0;
+        video.play();
+      });
+      card.addEventListener('mouseleave', function() {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  });
