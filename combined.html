@@ -550,7 +550,7 @@ nav.scrolled {
 }
 .featured .pricing-features li { color: rgba(30,26,22,0.75); }
 .pricing-features li::before {
-  content: '✓'; flex-shrink: 0;
+  content: '\2713'; flex-shrink: 0;
   color: var(--terra); font-weight: 600; margin-top: 1px;
 }
 .featured .pricing-features li::before { color: var(--raw); }
@@ -902,7 +902,7 @@ footer {
 }
 .opt-card:hover { border-color: rgba(196,98,45,0.4); background: rgba(43,37,32,0.8); transform: translateY(-2px); }
 .opt-card.sel { border-color: var(--terra); background: rgba(196,98,45,0.1); }
-.opt-card.sel::before { content:'✓'; position:absolute; top:12px; right:14px; font-size:14px; color:var(--terra); font-weight:700; }
+.opt-card.sel::before { content:'\2713'; position:absolute; top:12px; right:14px; font-size:14px; color:var(--terra); font-weight:700; }
 .opt-title { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 1px; color: var(--cement); display: block; margin-bottom: 4px; }
 .opt-desc { font-size: 12px; font-weight: 300; color: rgba(212,201,184,0.45); line-height: 1.5; }
 .opt-card.sw-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 16px; gap: 12px; }
@@ -1044,10 +1044,10 @@ footer {
         <div class="q-loading-hl">BUILDING<br>YOUR BOX.</div>
         <div class="q-loader-bar-wrap"><div class="q-loader-bar-fill" id="qLoaderFill"></div></div>
         <div class="q-loading-steps" id="qLoadingSteps">
-          <div class="q-loading-step" data-step="0"><div class="q-step-ind">◌</div>Analyzing your skin profile</div>
-          <div class="q-loading-step" data-step="1"><div class="q-step-ind">◌</div>Matching targeted formulas</div>
-          <div class="q-loading-step" data-step="2"><div class="q-step-ind">◌</div>Curating your product lineup</div>
-          <div class="q-loading-step" data-step="3"><div class="q-step-ind">◌</div>Personalizing your ritual card</div>
+          <div class="q-loading-step" data-step="0"><div class="q-step-ind"></div>Analyzing your skin profile</div>
+          <div class="q-loading-step" data-step="1"><div class="q-step-ind"></div>Matching targeted formulas</div>
+          <div class="q-loading-step" data-step="2"><div class="q-step-ind"></div>Curating your product lineup</div>
+          <div class="q-loading-step" data-step="3"><div class="q-step-ind"></div>Personalizing your ritual card</div>
         </div>
       </div>
     </div>
@@ -1254,7 +1254,7 @@ footer {
       <div class="product-name">FACE WASH</div>
       <div class="product-desc">Sulfate-free deep cleanse formulated for melanin-rich skin. Addresses excess oil without stripping natural moisture.</div>
       <span class="product-tag tag-core">Core Item</span>
-      <span class="product-arrow">↗</span>
+      <span class="product-arrow">→</span>
     </div>
 
     <div class="product-card reveal reveal-delay-2">
@@ -1271,7 +1271,7 @@ footer {
       <div class="product-name">MOISTURIZER + SPF</div>
       <div class="product-desc">Daily defense with SPF 30. No white cast. Addresses hyperpigmentation and provides real UV protection for darker skin.</div>
       <span class="product-tag tag-core">Core Item</span>
-      <span class="product-arrow">↗</span>
+      <span class="product-arrow">→</span>
     </div>
 
     <div class="product-card reveal reveal-delay-3">
@@ -1285,7 +1285,7 @@ footer {
       <div class="product-name">BEARD OIL</div>
       <div class="product-desc">Formulated for coarse and textured beard hair. Reduces ingrown hairs and razor bumps — the #1 issue for Black men.</div>
       <span class="product-tag tag-core">Core Item</span>
-      <span class="product-arrow">↗</span>
+      <span class="product-arrow">→</span>
     </div>
 
     <div class="product-card reveal">
@@ -1300,7 +1300,7 @@ footer {
       <div class="product-name">BONUS ITEM</div>
       <div class="product-desc">Rotating monthly premium — cologne sample, edge control, lip balm, or grooming tool. Always a surprise worth opening for.</div>
       <span class="product-tag tag-premium">Premium Rotating</span>
-      <span class="product-arrow">↗</span>
+      <span class="product-arrow">→</span>
     </div>
 
     <div class="product-card reveal reveal-delay-1">
@@ -1316,7 +1316,7 @@ footer {
       <div class="product-name">RITUAL CARD</div>
       <div class="product-desc">Monthly grooming ritual guide. Specific to your skin type. Not generic tips — actual protocols that work for your complexion.</div>
       <span class="product-tag tag-core">Every Box</span>
-      <span class="product-arrow">↗</span>
+      <span class="product-arrow">→</span>
     </div>
 
     <div class="product-card reveal reveal-delay-2" style="background:var(--terra);border-color:transparent;">
@@ -1326,7 +1326,7 @@ footer {
       </div>
       <div style="font-size:14px;color:rgba(30,26,22,0.6);line-height:1.7;margin-bottom:28px;">Every box is personalized based on your skin tone, type, and goals. No generic curation.</div>
       <a href="#" onclick="openQuiz();return false;" class="btn-primary" style="background:var(--raw);color:var(--cement);display:inline-flex;">
-        Start Now ↗
+        Start Now →
       </a>
     </div>
   </div>
@@ -1457,7 +1457,7 @@ footer {
   <div style="margin-top:48px;padding:32px 40px;background:var(--raw-mid);border:1px solid rgba(212,201,184,0.07);border-radius:2px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;" class="reveal">
     <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--terra);">FOUNDING MEMBER OFFER</div>
     <div style="font-size:14px;font-weight:300;color:rgba(212,201,184,0.6);max-width:400px;">First 100 subscribers lock in 20% off for life. Once they're gone, the price goes up. <strong style="color:var(--cement);">Only 40 spots remaining.</strong></div>
-    <a href="#" onclick="openQuiz();return false;" class="btn-primary" style="margin-left:auto;">Claim Your Spot ↗</a>
+    <a href="#" onclick="openQuiz();return false;" class="btn-primary" style="margin-left:auto;">Claim Your Spot →</a>
   </div>
 </section>
 
@@ -1469,7 +1469,7 @@ footer {
   <div class="testimonial-grid">
     <div class="testimonial-card reveal">
       <div class="testimonial-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
       </div>
       <div class="testimonial-text">"First moisturizer I've ever used that doesn't leave that grey cast. My skin actually looks like mine after. Game changer."</div>
       <div class="testimonial-author">
@@ -1483,7 +1483,7 @@ footer {
 
     <div class="testimonial-card reveal reveal-delay-1">
       <div class="testimonial-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
       </div>
       <div class="testimonial-text">"The razor bump issue I had for 10 years is basically gone. I didn't think a grooming box was the answer but here we are."</div>
       <div class="testimonial-author">
@@ -1497,7 +1497,7 @@ footer {
 
     <div class="testimonial-card reveal reveal-delay-2">
       <div class="testimonial-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
       </div>
       <div class="testimonial-text">"Finally something built for us. I've spent years buying stuff that just didn't work. This actually works. Period."</div>
       <div class="testimonial-author">
