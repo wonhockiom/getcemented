@@ -164,23 +164,12 @@ body::before {
   <div class="rule"></div>
   <div class="tagline">Premium Grooming · Launching Soon</div>
   <div class="coming">Be the first to know</div>
-  <form class="form" action="https://formspree.io/f/mwvnnbqo" method="POST" onsubmit="handleSubmit(event)">
+  <form class="form" action="https://formspree.io/f/mwvnnbqo" method="POST">
     <input type="email" name="email" placeholder="YOUR EMAIL" required />
     <button type="submit">NOTIFY ME</button>
   </form>
-  <div class="thanks" id="thanks">You're on the list.</div>
 </div>
 
 <div class="bottom">becemented.com</div>
-
-<script>
-function handleSubmit(e) {
-  e.preventDefault();
-  document.querySelector('.form').style.display = 'none';
-  const thanks = document.getElementById('thanks');
-  thanks.style.display = 'block';
-}
-</script>
 </body>
 </html>
-
