@@ -164,7 +164,8 @@ body::before {
   <div class="rule"></div>
   <div class="tagline">Premium Grooming · Launching Soon</div>
   <div class="coming">Be the first to know</div>
-  <form class="form" action="https://formspree.io/f/mwvnnbqo" method="POST">
+  <form class="form" name="waitlist" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="waitlist" />
     <input type="email" name="email" placeholder="YOUR EMAIL" required />
     <button type="submit">NOTIFY ME</button>
   </form>
