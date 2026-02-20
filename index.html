@@ -40,6 +40,10 @@ body::before {
   text-align: center;
   z-index: 1;
   padding: 0 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
@@ -160,8 +164,8 @@ body::before {
   <div class="rule"></div>
   <div class="tagline">Premium Grooming · Launching Soon</div>
   <div class="coming">Be the first to know</div>
-  <form class="form" onsubmit="handleSubmit(event)">
-    <input type="email" placeholder="YOUR EMAIL" required />
+  <form class="form" action="https://formspree.io/f/mwvnnbqo" method="POST" onsubmit="handleSubmit(event)">
+    <input type="email" name="email" placeholder="YOUR EMAIL" required />
     <button type="submit">NOTIFY ME</button>
   </form>
   <div class="thanks" id="thanks">You're on the list.</div>
