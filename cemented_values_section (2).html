@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEMENTED — Why Us Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cement: #D4C9B8;
+  --cement-dark: #B8A99A;
+  --raw: #1E1A16;
+  --raw-mid: #2B2520;
+  --raw-light: #3D3530;
+  --terra: #C4622D;
+  --terra-light: #E07848;
+  --dust: #F5F0E8;
+  --white: #FAF8F4;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--raw);
+  color: var(--cement);
+}
+
+/* noise overlay — matches site */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  pointer-events: none; z-index: 1000;
+}
+
+/* ─── SECTION TAG (matches site) ─── */
+.section-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--terra);
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.section-tag::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--terra);
+}
+
+/* ─── REVEAL (matches site) ─── */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ══════════════════════════════════════════════
+   WHY US SECTION — THE THREE VALUES
+══════════════════════════════════════════════ */
+.section-why {
+  padding: 140px 80px;
+  background: var(--raw);
+  position: relative;
+  overflow: hidden;
+}
+
+/* large ghost watermark */
+.section-why::before {
+  content: 'WHY';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 420px; letter-spacing: -10px; line-height: 1;
+  color: rgba(212,201,184,0.025);
+  top: 50%; left: -30px;
+  transform: translateY(-50%);
+  pointer-events: none; user-select: none;
+  white-space: nowrap;
+}
+
+.why-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+}
+
+.why-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 5.5vw, 80px);
+  line-height: 0.9; letter-spacing: 2px;
+}
+
+.why-sub {
+  max-width: 300px; text-align: right;
+  font-size: 14px; font-weight: 300;
+  color: rgba(212,201,184,0.45); line-height: 1.7;
+}
+
+/* ── Value card grid ── */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+
+.value-card {
+  position: relative;
+  padding: 52px 44px 44px;
+  background: var(--raw-mid);
+  border: 1px solid rgba(212,201,184,0.06);
+  overflow: hidden;
+  transition: border-color 0.4s;
+  cursor: default;
+}
+
+.value-card:hover { border-color: rgba(196,98,45,0.3); }
+.value-card:hover .vc-bar { width: 100%; }
+.value-card:hover .vc-num { opacity: 0.12; }
+
+/* animated bottom bar */
+.vc-bar {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  background: var(--terra);
+  width: 0;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* big ghost number */
+.vc-num {
+  position: absolute;
+  top: 16px; right: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 120px; line-height: 1; letter-spacing: -4px;
+  color: rgba(212,201,184,0.05);
+  transition: opacity 0.4s;
+  user-select: none;
+}
+
+/* icon area */
+.vc-icon {
+  width: 52px; height: 52px;
+  margin-bottom: 36px;
+  display: flex; align-items: center;
+}
+
+/* value title */
+.vc-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px; letter-spacing: 2px; line-height: 1;
+  margin-bottom: 18px;
+  color: var(--cement);
+}
+
+.vc-title .terra { color: var(--terra); }
+
+/* body */
+.vc-body {
+  font-size: 14px; font-weight: 300;
+  color: rgba(212,201,184,0.55); line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+/* proof points */
+.vc-proofs {
+  display: flex; flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid rgba(212,201,184,0.08);
+  padding-top: 24px;
+}
+
+.vc-proof {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(212,201,184,0.35);
+}
+
+.vc-proof::before {
+  content: '—';
+  color: var(--terra);
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+/* featured card (center) */
+.value-card.featured {
+  background: var(--terra);
+  border-color: transparent;
+}
+
+.value-card.featured:hover { border-color: transparent; }
+.value-card.featured .vc-bar { background: var(--raw); }
+.value-card.featured .vc-num { color: rgba(0,0,0,0.08); opacity: 1; }
+.value-card.featured .vc-num:hover { opacity: 0.14; }
+.value-card.featured .vc-title { color: var(--raw); }
+.value-card.featured .vc-title .terra { color: rgba(30,26,22,0.55); }
+.value-card.featured .vc-body { color: rgba(30,26,22,0.65); }
+.value-card.featured .vc-proofs { border-color: rgba(30,26,22,0.12); }
+.value-card.featured .vc-proof { color: rgba(30,26,22,0.5); }
+.value-card.featured .vc-proof::before { color: var(--raw); }
+
+/* ── STAT ROW below grid ── */
+.why-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.why-stat {
+  padding: 36px 44px;
+  background: var(--raw-mid);
+  border: 1px solid rgba(212,201,184,0.06);
+  display: flex; align-items: center; gap: 28px;
+  transition: border-color 0.3s;
+}
+.why-stat:hover { border-color: rgba(196,98,45,0.2); }
+
+.why-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px; letter-spacing: 2px; line-height: 1;
+  color: var(--terra); flex-shrink: 0;
+}
+
+.why-stat-divider {
+  width: 1px; height: 40px;
+  background: rgba(212,201,184,0.1);
+  flex-shrink: 0;
+}
+
+.why-stat-text {
+  font-size: 13px; font-weight: 300;
+  color: rgba(212,201,184,0.45); line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════
+   INGREDIENT DEEP DIVE — bonus section
+   Full-width, cream bg, grid layout
+══════════════════════════════════════════════ */
+.section-ingredients {
+  padding: 140px 80px;
+  background: var(--dust);
+  color: var(--raw);
+  position: relative; overflow: hidden;
+}
+
+.section-ingredients::before {
+  content: 'IN';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 600px; line-height: 0.85; letter-spacing: -20px;
+  color: rgba(43,37,32,0.04);
+  bottom: -60px; right: -40px;
+  pointer-events: none; user-select: none;
+}
+
+.section-ingredients .section-tag { color: var(--terra); }
+.section-ingredients .section-tag::before { background: var(--terra); }
+
+.ing-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.ing-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 5vw, 76px);
+  line-height: 0.9; letter-spacing: 2px;
+  color: var(--raw);
+}
+
+.ing-intro {
+  font-size: 15px; font-weight: 300;
+  color: rgba(43,37,32,0.55); line-height: 1.8;
+}
+
+/* ingredient cards */
+.ing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.ing-card {
+  background: white;
+  padding: 40px 32px;
+  border: 1px solid rgba(43,37,32,0.08);
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.ing-card:hover {
+  border-color: var(--terra);
+  transform: translateY(-4px);
+}
+
+.ing-card:hover .ing-fill { width: 100%; }
+
+.ing-fill {
+  position: absolute;
+  bottom: 0; left: 0; height: 3px;
+  background: var(--terra);
+  width: 0; transition: width 0.5s ease;
+}
+
+.ing-pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px; line-height: 1;
+  color: var(--terra); letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.ing-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--raw);
+  margin-bottom: 14px;
+}
+
+.ing-rule {
+  width: 24px; height: 1px;
+  background: rgba(43,37,32,0.2);
+  margin-bottom: 14px;
+}
+
+.ing-desc {
+  font-size: 13px; font-weight: 300;
+  color: rgba(43,37,32,0.5); line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.ing-products {
+  display: flex; flex-wrap: wrap; gap: 5px;
+}
+
+.ing-product-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(196,98,45,0.25);
+  color: var(--terra);
+}
+
+/* No-list row */
+.ing-nope-row {
+  margin-top: 2px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.ing-nope {
+  background: var(--raw);
+  padding: 32px 40px;
+  display: flex; align-items: center; gap: 20px;
+  border: 1px solid rgba(212,201,184,0.06);
+  transition: border-color 0.3s;
+}
+.ing-nope:hover { border-color: rgba(196,98,45,0.2); }
+
+.nope-x {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; color: rgba(212,201,184,0.15);
+  flex-shrink: 0; line-height: 1;
+}
+
+.nope-text {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.nope-name {
+  font-size: 15px; font-weight: 700; letter-spacing: 1px;
+  color: var(--cement); display: block;
+}
+
+.nope-why {
+  font-size: 12px; font-weight: 300;
+  color: rgba(212,201,184,0.35); margin-top: 3px;
+}
+
+/* ══════════════════════════════════════════════
+   COMPARISON TABLE — Us vs. Generic
+══════════════════════════════════════════════ */
+.section-compare {
+  padding: 140px 80px;
+  background: var(--raw-mid);
+}
+
+.compare-header {
+  margin-bottom: 64px;
+}
+
+.compare-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 5vw, 80px);
+  line-height: 0.9; letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.compare-headline .terra { color: var(--terra); }
+
+.compare-sub {
+  font-size: 14px; font-weight: 300;
+  color: rgba(212,201,184,0.45); max-width: 440px;
+  line-height: 1.7;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* col headers */
+.compare-table thead tr th {
+  padding: 20px 32px;
+  text-align: left;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(212,201,184,0.1);
+}
+
+.compare-table thead .th-feature {
+  color: rgba(212,201,184,0.3);
+  width: 35%;
+}
+
+.compare-table thead .th-cemented {
+  color: var(--terra);
+  background: rgba(196,98,45,0.08);
+  text-align: center;
+}
+
+.compare-table thead .th-generic {
+  color: rgba(212,201,184,0.25);
+  text-align: center;
+}
+
+/* rows */
+.compare-table tbody tr {
+  border-bottom: 1px solid rgba(212,201,184,0.06);
+  transition: background 0.2s;
+}
+.compare-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+.compare-table tbody tr:last-child { border-bottom: none; }
+
+.compare-table tbody td {
+  padding: 22px 32px;
+  font-size: 14px;
+}
+
+.td-feature {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(212,201,184,0.6);
+}
+
+.td-cemented {
+  background: rgba(196,98,45,0.06);
+  text-align: center;
+  border-left: 1px solid rgba(196,98,45,0.1);
+  border-right: 1px solid rgba(196,98,45,0.1);
+}
+
+.td-generic {
+  text-align: center;
+  color: rgba(212,201,184,0.25);
+}
+
+.check {
+  color: var(--terra);
+  font-size: 16px; font-weight: 700;
+}
+
+.cross {
+  color: rgba(212,201,184,0.2);
+  font-size: 16px;
+}
+
+.td-note {
+  font-size: 12px; font-weight: 300;
+  color: rgba(212,201,184,0.5);
+  display: block; margin-top: 3px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* CTA at bottom */
+.compare-cta {
+  margin-top: 48px;
+  padding: 40px 48px;
+  background: var(--terra);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 32px;
+  flex-wrap: wrap;
+}
+
+.compare-cta-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 3px; color: var(--raw); line-height: 1;
+}
+
+.compare-cta-sub {
+  font-size: 14px; color: rgba(30,26,22,0.6);
+  margin-top: 6px; font-weight: 300;
+}
+
+.btn-primary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--raw); color: var(--cement);
+  padding: 16px 36px; border: none; border-radius: 2px;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: background 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+.btn-primary:hover { background: var(--raw-mid); transform: translateY(-2px); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  .section-why, .section-ingredients, .section-compare { padding: 80px 32px; }
+  .why-grid, .why-stat-row, .ing-grid, .ing-nope-row { grid-template-columns: 1fr; }
+  .why-header, .ing-header { flex-direction: column; gap: 24px; }
+  .why-sub { text-align: left; max-width: 100%; }
+  .compare-table thead .th-cemented, .compare-table thead .th-generic,
+  .td-cemented, .td-generic { padding: 16px; }
+  .ing-header { grid-template-columns: 1fr; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1: THREE VALUE PROPS
+══════════════════════════════════════════════ -->
+<section class="section-why" id="why">
+
+  <div class="why-header reveal">
+    <div>
+      <div class="section-tag">Why CEMENTED</div>
+      <div class="why-headline">THREE REASONS.<br>ONE STANDARD.</div>
+    </div>
+    <div class="why-sub">
+      Every other grooming brand is built for someone else. Here's exactly why CEMENTED is different — and why it matters for your skin.
+    </div>
+  </div>
+
+  <div class="why-grid">
+
+    <!-- VALUE 1: FORMULATED FOR YOUR SKIN -->
+    <div class="value-card reveal">
+      <div class="vc-bar"></div>
+      <div class="vc-num">01</div>
+
+      <div class="vc-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="18" stroke="#C4622D" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="10" stroke="#C4622D" stroke-width="1" opacity="0.4"/>
+          <line x1="24" y1="6" x2="24" y2="42" stroke="#C4622D" stroke-width="1" opacity="0.2"/>
+          <line x1="6" y1="24" x2="42" y2="24" stroke="#C4622D" stroke-width="1" opacity="0.2"/>
+          <circle cx="24" cy="24" r="3" fill="#C4622D"/>
+        </svg>
+      </div>
+
+      <div class="vc-title">BUILT FOR<br><span class="terra">YOUR SKIN.</span></div>
+      <div class="vc-body">
+        40% of American men are men of color. Less than 5% of premium grooming brands were built for them. Every formula in your CEMENTED box starts with one question: does this actually work on melanin-rich skin?
+      </div>
+
+      <div class="vc-proofs">
+        <div class="vc-proof">Tested on Fitzpatrick IV–VI skin tones</div>
+        <div class="vc-proof">Zero white cast — guaranteed</div>
+        <div class="vc-proof">Formulated for coarse, textured hair</div>
+        <div class="vc-proof">Addresses hyperpigmentation from day one</div>
+      </div>
+    </div>
+
+    <!-- VALUE 2: SCIENCE-BACKED (featured/center) -->
+    <div class="value-card featured reveal reveal-delay-1">
+      <div class="vc-bar"></div>
+      <div class="vc-num">02</div>
+
+      <div class="vc-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect x="18" y="4" width="12" height="20" rx="2" stroke="rgba(30,26,22,0.6)" stroke-width="1.5"/>
+          <path d="M12 24 L8 40 Q8 44 12 44 L36 44 Q40 44 40 40 L36 24 Z" stroke="rgba(30,26,22,0.6)" stroke-width="1.5" fill="none"/>
+          <circle cx="20" cy="34" r="2" fill="rgba(30,26,22,0.4)"/>
+          <circle cx="28" cy="30" r="2" fill="rgba(30,26,22,0.4)"/>
+          <circle cx="24" cy="38" r="2" fill="rgba(30,26,22,0.6)"/>
+          <line x1="18" y1="4" x2="12" y2="24" stroke="rgba(30,26,22,0.4)" stroke-width="1"/>
+          <line x1="30" y1="4" x2="36" y2="24" stroke="rgba(30,26,22,0.4)" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <div class="vc-title">SCIENCE<br><span class="terra">BACKED.</span></div>
+      <div class="vc-body">
+        No trendy ingredients without proof. No filler. Every active in every formula is there for a reason — at the right concentration, in the right delivery system, at the right pH.
+      </div>
+
+      <div class="vc-proofs">
+        <div class="vc-proof">Niacinamide 5% — clinically dosed</div>
+        <div class="vc-proof">Ceramide NP/AP/EOP complex</div>
+        <div class="vc-proof">BHA 0.5–2% for pore-clearing</div>
+        <div class="vc-proof">pH 4.5–6.0 — barrier-preserving</div>
+      </div>
+    </div>
+
+    <!-- VALUE 3: ZERO COMPROMISES -->
+    <div class="value-card reveal reveal-delay-2">
+      <div class="vc-bar"></div>
+      <div class="vc-num">03</div>
+
+      <div class="vc-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <path d="M24 4 L28 18 L42 18 L30 27 L34 42 L24 33 L14 42 L18 27 L6 18 L20 18 Z" stroke="#C4622D" stroke-width="1.5" fill="none"/>
+          <path d="M24 10 L27 19 L37 19 L29 25 L32 35 L24 29 L16 35 L19 25 L11 19 L21 19 Z" fill="#C4622D" opacity="0.12"/>
+        </svg>
+      </div>
+
+      <div class="vc-title">ZERO<br><span class="terra">COMPROMISES.</span></div>
+      <div class="vc-body">
+        No shortcuts in the lab. No generic private-label formulas pulled off a shelf. We work directly with OEM labs to spec every product from scratch. If it doesn't pass, it doesn't ship.
+      </div>
+
+      <div class="vc-proofs">
+        <div class="vc-proof">No sulfates — SLS or SLES, ever</div>
+        <div class="vc-proof">No Octocrylene in any formula</div>
+        <div class="vc-proof">Fragrance-free by default</div>
+        <div class="vc-proof">Non-comedogenic across the full box</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stat row -->
+  <div class="why-stat-row">
+    <div class="why-stat reveal">
+      <div class="why-stat-num">40%</div>
+      <div class="why-stat-divider"></div>
+      <div class="why-stat-text">of American men are men of color — with almost no premium grooming built for them</div>
+    </div>
+    <div class="why-stat reveal reveal-delay-1">
+      <div class="why-stat-num">7</div>
+      <div class="why-stat-divider"></div>
+      <div class="why-stat-text">products, every one individually specced across 4 OEM labs — zero generic shelf formulas</div>
+    </div>
+    <div class="why-stat reveal reveal-delay-2">
+      <div class="why-stat-num">0</div>
+      <div class="why-stat-divider"></div>
+      <div class="why-stat-text">premium subscriptions built specifically for melanin-rich skin existed before CEMENTED</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2: INGREDIENT BREAKDOWN
+══════════════════════════════════════════════ -->
+<section class="section-ingredients" id="ingredients">
+
+  <div class="ing-header reveal">
+    <div>
+      <div class="section-tag">What's Inside</div>
+      <div class="ing-headline">INGREDIENTS<br>THAT EARN<br>THEIR SPOT.</div>
+    </div>
+    <div class="ing-intro">
+      Every active in every CEMENTED formula is there because the science says it works. Clinically dosed. Barrier-preserving pH. Tested specifically on deeper skin tones. Here's what's doing the heavy lifting.
+    </div>
+  </div>
+
+  <div class="ing-grid">
+
+    <div class="ing-card reveal">
+      <div class="ing-fill"></div>
+      <div class="ing-pct">5%</div>
+      <div class="ing-name">Niacinamide</div>
+      <div class="ing-rule"></div>
+      <div class="ing-desc">Fades dark spots and hyperpigmentation. Minimizes pore appearance. Strengthens skin barrier. Reduces inflammation. Works on all skin tones.</div>
+      <div class="ing-products">
+        <span class="ing-product-tag">Face Wash</span>
+        <span class="ing-product-tag">Moisturizer</span>
+      </div>
+    </div>
+
+    <div class="ing-card reveal reveal-delay-1">
+      <div class="ing-fill"></div>
+      <div class="ing-pct">2%</div>
+      <div class="ing-name">Hyaluronic Acid</div>
+      <div class="ing-rule"></div>
+      <div class="ing-desc">Holds 1,000× its weight in water. Delivers deep hydration without greasiness. Works at multiple skin depths for lasting results.</div>
+      <div class="ing-products">
+        <span class="ing-product-tag">Moisturizer</span>
+        <span class="ing-product-tag">SPF 50</span>
+      </div>
+    </div>
+
+    <div class="ing-card reveal reveal-delay-2">
+      <div class="ing-fill"></div>
+      <div class="ing-pct">0.5–2%</div>
+      <div class="ing-name">Salicylic Acid</div>
+      <div class="ing-rule"></div>
+      <div class="ing-desc">Oil-soluble BHA that gets inside pores. Clears congestion, reduces razor bumps, and prevents ingrown hairs on textured skin.</div>
+      <div class="ing-products">
+        <span class="ing-product-tag">Face Wash</span>
+      </div>
+    </div>
+
+    <div class="ing-card reveal reveal-delay-3">
+      <div class="ing-fill"></div>
+      <div class="ing-pct">NP+AP</div>
+      <div class="ing-name">Ceramide Complex</div>
+      <div class="ing-rule"></div>
+      <div class="ing-desc">Rebuilds and fortifies the skin barrier. Locks in moisture. Prevents transepidermal water loss — especially critical on melanin-rich skin.</div>
+      <div class="ing-products">
+        <span class="ing-product-tag">Moisturizer</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- What's NOT in the box -->
+  <div class="ing-nope-row">
+    <div class="ing-nope reveal">
+      <div class="nope-x">✕</div>
+      <div class="nope-text">
+        <span class="nope-name">SLS / SLES</span>
+        <span class="nope-why">Strips melanin-rich skin of natural protective oils</span>
+      </div>
+    </div>
+    <div class="ing-nope reveal reveal-delay-1">
+      <div class="nope-x">✕</div>
+      <div class="nope-text">
+        <span class="nope-name">Octocrylene</span>
+        <span class="nope-why">Degrades into benzophenone — a known carcinogen</span>
+      </div>
+    </div>
+    <div class="ing-nope reveal reveal-delay-2">
+      <div class="nope-x">✕</div>
+      <div class="nope-text">
+        <span class="nope-name">Zinc &amp; Titanium Dioxide</span>
+        <span class="nope-why">Leave white cast on deeper skin tones — we use chemical UV filters only</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3: COMPARISON TABLE
+══════════════════════════════════════════════ -->
+<section class="section-compare" id="compare">
+
+  <div class="compare-header reveal">
+    <div class="section-tag">The Difference</div>
+    <div class="compare-headline">CEMENTED<br>VS. <span class="terra">EVERYONE ELSE.</span></div>
+    <div class="compare-sub">This isn't shade — it's just facts. Most grooming brands were built for one type of skin. Here's what that looks like side by side.</div>
+  </div>
+
+  <div class="reveal reveal-delay-1">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th class="th-feature">Feature</th>
+          <th class="th-cemented">CEMENTED</th>
+          <th class="th-generic">Generic Brands</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-feature">Formulated for Fitzpatrick IV–VI
+            <span class="td-note">Tested on deeper skin tones specifically</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td class="td-feature">Zero White Cast
+            <span class="td-note">No zinc, no titanium — invisible on all tones</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td class="td-feature">Sulfate-Free Across Every SKU
+            <span class="td-note">No SLS or SLES in any formula, ever</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td class="td-feature">Clinically Dosed Actives
+            <span class="td-note">Right concentration, right pH, right delivery</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td class="td-feature">Textured + Coarse Hair Formulas
+            <span class="td-note">Products specced for 4C hair types</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td class="td-feature">Skin Quiz Curation
+            <span class="td-note">Every box built from your exact profile</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td class="td-feature">Fragrance-Free Default
+            <span class="td-note">Safe for sensitive and reactive skin types</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+        <tr>
+          <td class="td-feature">Octocrylene-Free SPF
+            <span class="td-note">No benzophenone precursors in any sunscreen</span>
+          </td>
+          <td class="td-cemented"><span class="check">✓</span></td>
+          <td class="td-generic"><span class="cross">✕</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare-cta reveal">
+    <div>
+      <div class="compare-cta-headline">BUILD YOUR BOX.</div>
+      <div class="compare-cta-sub">Take the quiz. Get a personalized box. First 100 members lock in 20% off for life.</div>
+    </div>
+    <a href="#" class="btn-primary">
+      Start the Quiz
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</section>
+
+
+<script>
+  // Scroll reveal — identical to main site
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
