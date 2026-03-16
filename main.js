@@ -10,8 +10,7 @@ function animRing() {
   rx += (mx - rx) * .12; ry += (my - ry) * .12;
   curRing.style.left = rx + 'px'; curRing.style.top = ry + 'px';
   requestAnimationFrame(animRing);
-}
-animRing();
+} animRing();
 document.querySelectorAll('a,button').forEach(el => {
   el.addEventListener('mouseenter', () => { cur.style.transform = 'translate(-50%,-50%) scale(2.2)'; curRing.style.width = '52px'; curRing.style.height = '52px'; });
   el.addEventListener('mouseleave', () => { cur.style.transform = 'translate(-50%,-50%) scale(1)'; curRing.style.width = '32px'; curRing.style.height = '32px'; });
@@ -33,22 +32,29 @@ function closeMob() {
   document.getElementById('mobNav').classList.remove('open');
 }
 
-// ── SCROLL REVEAL ──
+// ── REVEAL ──
 (function () {
   const els = document.querySelectorAll('.reveal');
   if (!els.length) return;
-  const show = el => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; };
+  function show(el) {
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  }
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { show(e.target); obs.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) { show(e.target); obs.unobserve(e.target); }
+    });
   }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
   els.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(22px)';
     el.style.transition = 'opacity 0.65s ease, transform 0.65s ease';
-    obs.observe(el);
-    // Immediately show if already in viewport
     const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) show(el);
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      show(el);
+    } else {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      obs.observe(el);
+    }
   });
 })();
 
@@ -64,48 +70,48 @@ window.closeQuiz = closeQuiz;
 
 const questions = [
   { id: 'tone', hl: 'What is your skin tone?', sub: 'Select what best describes your natural tone', type: 'swatch', cols: 'c3', options: [
-    { value: 'light', title: 'Light', desc: 'Fair to light brown', swatch: '#D4A574' },
-    { value: 'caramel', title: 'Caramel', desc: 'Warm caramel brown', swatch: '#B07D4A' },
-    { value: 'almond', title: 'Almond', desc: 'Medium brown', swatch: '#8B6040' },
-    { value: 'mahogany', title: 'Mahogany', desc: 'Rich medium-dark brown', swatch: '#6B3F22' },
-    { value: 'deep', title: 'Deep', desc: 'Deep dark brown', swatch: '#3D1F0C' },
-    { value: 'ebony', title: 'Ebony', desc: 'Rich ebony', swatch: '#1A0A04' }
+    { value: 'light',    title: 'Light',    desc: 'Fair to light brown',      swatch: '#D4A574' },
+    { value: 'caramel',  title: 'Caramel',  desc: 'Warm caramel brown',       swatch: '#B07D4A' },
+    { value: 'almond',   title: 'Almond',   desc: 'Medium brown',             swatch: '#8B6040' },
+    { value: 'mahogany', title: 'Mahogany', desc: 'Rich medium-dark brown',   swatch: '#6B3F22' },
+    { value: 'deep',     title: 'Deep',     desc: 'Deep dark brown',          swatch: '#3D1F0C' },
+    { value: 'ebony',    title: 'Ebony',    desc: 'Rich ebony',               swatch: '#1A0A04' }
   ]},
   { id: 'type', hl: 'What is your skin type?', sub: 'When you wake up without washing your face', type: 'card', cols: 'c2', options: [
-    { value: 'oily', title: 'Oily', desc: 'Shiny all over, large pores' },
-    { value: 'dry', title: 'Dry', desc: 'Tight, flaky, dull' },
-    { value: 'combo', title: 'Combination', desc: 'Oily T-zone, dry cheeks' },
-    { value: 'normal', title: 'Balanced', desc: 'Generally clear, minimal issues' }
+    { value: 'oily',   title: 'Oily',        desc: 'Shiny all over, large pores' },
+    { value: 'dry',    title: 'Dry',         desc: 'Tight, flaky, dull' },
+    { value: 'combo',  title: 'Combination', desc: 'Oily T-zone, dry cheeks' },
+    { value: 'normal', title: 'Balanced',    desc: 'Generally clear, minimal issues' }
   ]},
   { id: 'concern', hl: 'What is your main concern?', sub: "We'll build your box around this", type: 'card', cols: 'c2', options: [
-    { value: 'hyperpigmentation', title: 'Dark Spots', desc: 'Post-blemish marks, uneven tone' },
-    { value: 'bumps', title: 'Razor Bumps', desc: 'Ingrowns, irritation after shaving' },
-    { value: 'acne', title: 'Breakouts', desc: 'Active acne, congestion, texture' },
-    { value: 'aging', title: 'Anti-Aging', desc: 'Lines, firmness, overall health' },
-    { value: 'dryness', title: 'Dryness', desc: 'Rough texture, flaking, tightness' },
-    { value: 'oilcontrol', title: 'Oil Control', desc: 'Shine, large pores, blotting' }
+    { value: 'hyperpigmentation', title: 'Dark Spots',    desc: 'Post-blemish marks, uneven tone' },
+    { value: 'bumps',             title: 'Razor Bumps',   desc: 'Ingrowns, irritation after shaving' },
+    { value: 'acne',              title: 'Breakouts',     desc: 'Active acne, congestion, texture' },
+    { value: 'aging',             title: 'Anti-Aging',    desc: 'Lines, firmness, overall health' },
+    { value: 'dryness',           title: 'Dryness',       desc: 'Rough texture, flaking, tightness' },
+    { value: 'oilcontrol',        title: 'Oil Control',   desc: 'Shine, large pores, blotting' }
   ]},
   { id: 'beard', hl: 'What is your beard situation?', sub: 'This shapes the grooming products we include', type: 'card', cols: 'c2', options: [
-    { value: 'full', title: 'Full Beard', desc: 'Maintained, needs conditioning' },
-    { value: 'growing', title: 'Growing It Out', desc: 'In the itch phase or early growth' },
-    { value: 'clean', title: 'Clean Shaven', desc: 'Shaving daily, post-shave care' },
-    { value: 'fade', title: 'Fade / Trim', desc: 'Short, sharp lines maintained regularly' }
+    { value: 'full',    title: 'Full Beard',    desc: 'Maintained, needs conditioning' },
+    { value: 'growing', title: 'Growing It Out',desc: 'In the itch phase or early growth' },
+    { value: 'clean',   title: 'Clean Shaven',  desc: 'Shaving daily, post-shave care' },
+    { value: 'fade',    title: 'Fade / Trim',   desc: 'Short, sharp lines maintained regularly' }
   ]},
   { id: 'sensitivity', hl: 'How sensitive is your skin?', sub: 'Helps us choose gentler actives if needed', type: 'card', cols: 'c3', options: [
-    { value: 'low', title: 'Not Sensitive', desc: 'Handles most products fine' },
-    { value: 'medium', title: 'Somewhat', desc: 'Occasional reactions' },
-    { value: 'high', title: 'Very Sensitive', desc: 'Burns, stings, redness often' }
+    { value: 'low',    title: 'Not Sensitive', desc: 'Handles most products fine' },
+    { value: 'medium', title: 'Somewhat',      desc: 'Occasional reactions' },
+    { value: 'high',   title: 'Very Sensitive',desc: 'Burns, stings, redness often' }
   ]},
   { id: 'goal', hl: 'What is your grooming goal?', sub: 'What does success look like for you?', type: 'card', cols: 'c2', options: [
-    { value: 'confidence', title: 'Look & Feel Fresh', desc: 'Consistent, clean, confident daily' },
-    { value: 'invest', title: 'Invest in My Skin', desc: 'Long-term skin health and aging' },
-    { value: 'fix', title: 'Fix a Specific Issue', desc: 'Target one clear problem' },
-    { value: 'simple', title: 'Keep It Simple', desc: 'A clean ritual that works, no fuss' }
+    { value: 'confidence', title: 'Look & Feel Fresh',   desc: 'Consistent, clean, confident daily' },
+    { value: 'invest',     title: 'Invest in My Skin',   desc: 'Long-term skin health and aging' },
+    { value: 'fix',        title: 'Fix a Specific Issue',desc: 'Target one clear problem' },
+    { value: 'simple',     title: 'Keep It Simple',      desc: 'A clean ritual that works, no fuss' }
   ]},
   { id: 'routine', hl: 'How would you describe your current routine?', sub: "Be honest — we'll calibrate accordingly", type: 'card', cols: 'c3', options: [
-    { value: 'none', title: 'Basically Nothing', desc: 'Soap and maybe a moisturizer' },
-    { value: 'basic', title: 'The Basics', desc: 'Cleanser, moisturizer, SPF' },
-    { value: 'advanced', title: 'Full Routine', desc: 'Serums, treatments, the works' }
+    { value: 'none',     title: 'Basically Nothing', desc: 'Soap and maybe a moisturizer' },
+    { value: 'basic',    title: 'The Basics',        desc: 'Cleanser, moisturizer, SPF' },
+    { value: 'advanced', title: 'Full Routine',      desc: 'Serums, treatments, the works' }
   ]}
 ];
 
@@ -125,6 +131,7 @@ function qStart() {
   renderDots(); qRender(0); qShowScreen('qscreen-questions');
 }
 window.qStart = qStart;
+window.qStartQuiz = qStart;
 
 function renderDots() {
   document.getElementById('qDots').innerHTML = questions.map((_, i) =>
@@ -164,7 +171,9 @@ function qSel(qId, value, el) {
 }
 window.qSel = qSel;
 
-function qNext() { if (qCurrent < qTotal - 1) { qRender(qCurrent + 1); } else { qLoading(); } }
+function qNext() {
+  if (qCurrent < qTotal - 1) { qRender(qCurrent + 1); } else { qLoading(); }
+}
 function qBack() { if (qCurrent > 0) qRender(qCurrent - 1); }
 window.qNext = qNext;
 window.qBack = qBack;
@@ -175,14 +184,12 @@ function qLoading() {
   document.getElementById('qNavLabel').textContent = 'Analyzing';
   const fill = document.getElementById('qBarFill');
   fill.style.cssText = 'height:100%;background:var(--terra);width:0;border-radius:1px;animation:qBar 2.2s ease-out forwards';
-  const steps = document.querySelectorAll('.q-load-step');
-  let s = 0;
+  const steps = document.querySelectorAll('.q-load-step'); let s = 0;
   const go = () => {
     if (s > 0) { steps[s - 1].classList.remove('qactive'); steps[s - 1].classList.add('qdone'); steps[s - 1].querySelector('.q-step-ind').textContent = '✓'; }
     if (s < steps.length) { steps[s].classList.add('qactive'); s++; setTimeout(go, 580); }
     else { setTimeout(() => qShowScreen('qscreen-email'), 400); }
-  };
-  setTimeout(go, 300);
+  }; setTimeout(go, 300);
 }
 
 function qSubmitEmail() {
@@ -202,10 +209,10 @@ function qBuildResults() {
   const a = qAnswers;
   const typeMap = { oily: 'OILY SKIN', dry: 'DRY SKIN', combo: 'COMBINATION SKIN', normal: 'BALANCED SKIN' };
   const typeSubs = {
-    oily: 'Your skin overproduces sebum. Your box focuses on oil control, pore-clearing actives, and lightweight hydration.',
-    dry: 'Your skin needs more moisture. Your box prioritizes deep hydration and barrier repair.',
-    combo: 'You need targeted products. Your box balances oil control and hydration by zone.',
-    normal: 'Your baseline is solid. Your box focuses on maintenance, protection, and your specific concern.'
+    oily: "Your skin overproduces sebum. Your box focuses on oil control, pore-clearing actives, and lightweight hydration.",
+    dry: "Your skin needs more moisture. Your box prioritizes deep hydration and barrier repair.",
+    combo: "You need targeted products. Your box balances oil control and hydration by zone.",
+    normal: "Your baseline is solid. Your box focuses on maintenance, protection, and your specific concern."
   };
   const concernMap = {
     hyperpigmentation: 'DARK SPOTS + EVEN TONE', bumps: 'RAZOR BUMPS + INGROWNS',
@@ -220,7 +227,7 @@ function qBuildResults() {
   else if (a.concern === 'bumps') products.push({ name: 'Pre-Shave + Bump Defense Serum', why: 'BHA exfoliant that works at the follicle level. Prevents ingrown hairs.', badge: 'core' });
   else if (a.concern === 'acne') products.push({ name: 'Targeted Spot Treatment', why: 'Benzoyl peroxide formula that neutralizes acne-causing bacteria.', badge: 'core' });
   else if (a.concern === 'aging') products.push({ name: 'Retinol Night Serum', why: 'Buffered retinol. Builds collagen and smooths texture. Use 2–3x weekly.', badge: 'core' });
-  else if (a.concern === 'dryness') products.push({ name: 'Ceramide + Hyaluronic Barrier Cream', why: 'Rebuilds the moisture barrier. Addresses chronic dryness within 1–2 weeks.', badge: 'core' });
+  else if (a.concern === 'dryness') products.push({ name: 'Ceramide + Hyaluronic Barrier Cream', why: "Rebuilds the moisture barrier. Addresses chronic dryness within 1–2 weeks.", badge: 'core' });
   else products.push({ name: 'Mattifying Pore-Refining Serum', why: 'Niacinamide-based. Reduces pore size and controls shine all day.', badge: 'core' });
   if (a.beard === 'full') products.push({ name: 'Beard Conditioning Oil', why: 'Jojoba and argan base. Softens texture, eliminates beardruff.', badge: 'core' });
   else if (a.beard === 'growing') products.push({ name: 'Beard Growth + Itch Relief Serum', why: 'Biotin and caffeine formula. Calms the itch phase and encourages fuller growth.', badge: 'core' });
@@ -233,7 +240,7 @@ function qBuildResults() {
     type: typeMap[a.type] || 'COMBINATION SKIN',
     typeSub: typeSubs[a.type] || typeSubs.combo,
     concern: concernMap[a.concern] || 'OVERALL SKIN HEALTH',
-    price: '$39',
+    tier: 'ESSENTIAL · $39/MO', price: '$39',
     profile: {
       'Skin Type': a.type ? a.type[0].toUpperCase() + a.type.slice(1) : '—',
       'Main Concern': a.concern ? a.concern[0].toUpperCase() + a.concern.slice(1) : '—',
@@ -270,7 +277,7 @@ function qRetake() {
 }
 window.qRetake = qRetake;
 
-// Spots counter (cosmetic)
+// ── SPOTS COUNTER (cosmetic) ──
 let spots = 40;
 function tickSpots() {
   if (spots > 36 && Math.random() < .3) {
