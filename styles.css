@@ -104,7 +104,7 @@ nav.scrolled{background:rgba(0,0,0,.96);backdrop-filter:blur(24px);border-color:
 .prob-stat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#C49A6C;letter-spacing:1px;line-height:1}
 .prob-stat-l{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:rgba(232,213,163,.3);margin-top:6px;line-height:1.5}
 
-/* Problem right — proof blocks */
+/* Problem right proof blocks */
 .proof-stack{display:flex;flex-direction:column;gap:3px;padding-top:8px}
 .proof-block{background:var(--raw-mid);border:1px solid var(--border);padding:36px 40px;position:relative;overflow:hidden;transition:border-color .3s}
 .proof-block:hover{border-color:var(--border-terra)}
@@ -182,7 +182,7 @@ nav.scrolled{background:rgba(0,0,0,.96);backdrop-filter:blur(24px);border-color:
 .p-features{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
 .p-features li{display:flex;gap:10px;font-size:15px;font-weight:300;color:rgba(196,163,108,.65);align-items:flex-start}
 .feat .p-features li{color:rgba(0,0,0,.7)}
-.p-features li::before{content:'—';color:var(--terra);flex-shrink:0;font-weight:600}
+.p-features li::before{content:'·';color:var(--terra);flex-shrink:0;font-weight:600}
 .feat .p-features li::before{color:rgba(0,0,0,.5)}
 .p-btn{display:block;width:100%;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-align:center;padding:16px;border:none;border-radius:2px;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s}
 .p-btn:hover{transform:translateY(-2px)}

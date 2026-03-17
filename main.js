@@ -108,7 +108,7 @@ const questions = [
     { value: 'fix',        title: 'Fix a Specific Issue',desc: 'Target one clear problem' },
     { value: 'simple',     title: 'Keep It Simple',      desc: 'A clean ritual that works, no fuss' }
   ]},
-  { id: 'routine', hl: 'How would you describe your current routine?', sub: "Be honest — we'll calibrate accordingly", type: 'card', cols: 'c3', options: [
+  { id: 'routine', hl: 'How would you describe your current routine?', sub: "Be honest we'll calibrate accordingly", type: 'card', cols: 'c3', options: [
     { value: 'none',     title: 'Basically Nothing', desc: 'Soap and maybe a moisturizer' },
     { value: 'basic',    title: 'The Basics',        desc: 'Cleanser, moisturizer, SPF' },
     { value: 'advanced', title: 'Full Routine',      desc: 'Serums, treatments, the works' }
@@ -196,7 +196,7 @@ function qSubmitEmail() {
   const email = document.getElementById('qEmailInput').value;
   if (email) {
     const d = new FormData();
-    d.append('_subject', 'New Quiz — CEMENTED');
+    d.append('_subject', 'New Quiz CEMENTED');
     d.append('Email', email);
     Object.entries(qAnswers).forEach(([k, v]) => d.append(k, v));
     fetch('https://formspree.io/f/mwvnnbqo', { method: 'POST', body: d, headers: { Accept: 'application/json' } });
@@ -234,7 +234,7 @@ function qBuildResults() {
   else if (a.beard === 'clean') products.push({ name: 'Post-Shave Recovery Balm', why: 'Alcohol-free. Calms irritation and deeply hydrates after every shave.', badge: 'core' });
   else products.push({ name: 'Precision Hold + Skin Guard Gel', why: 'Clean definition without clogging pores or leaving residue.', badge: 'core' });
   if (a.sensitivity === 'high') products.push({ name: 'Fragrance-Free Recovery Gel', why: 'Zero irritants. Pure aloe and centella asiatica to calm reactive skin.', badge: 'bonus' });
-  else if (a.goal === 'confidence') products.push({ name: 'Cologne Sample — Curated Pick', why: 'Monthly rotating premium fragrance sample. The finishing touch.', badge: 'bonus' });
+  else if (a.goal === 'confidence') products.push({ name: 'Cologne Sample Curated Pick', why: 'Monthly rotating premium fragrance sample. The finishing touch.', badge: 'bonus' });
   else products.push({ name: 'Brightening Exfoliating Scrub', why: 'Monthly treatment. Removes buildup and gives skin a noticeably clearer finish.', badge: 'bonus' });
   return {
     type: typeMap[a.type] || 'COMBINATION SKIN',
@@ -242,10 +242,10 @@ function qBuildResults() {
     concern: concernMap[a.concern] || 'OVERALL SKIN HEALTH',
     tier: 'ESSENTIAL · $39/MO', price: '$39',
     profile: {
-      'Skin Type': a.type ? a.type[0].toUpperCase() + a.type.slice(1) : '—',
-      'Main Concern': a.concern ? a.concern[0].toUpperCase() + a.concern.slice(1) : '—',
-      'Goal': a.goal ? a.goal[0].toUpperCase() + a.goal.slice(1) : '—',
-      'Beard': a.beard ? a.beard[0].toUpperCase() + a.beard.slice(1) : '—'
+      'Skin Type': a.type ? a.type[0].toUpperCase() + a.type.slice(1) : '-',
+      'Main Concern': a.concern ? a.concern[0].toUpperCase() + a.concern.slice(1) : '-',
+      'Goal': a.goal ? a.goal[0].toUpperCase() + a.goal.slice(1) : '-',
+      'Beard': a.beard ? a.beard[0].toUpperCase() + a.beard.slice(1) : '-'
     },
     products
   };
