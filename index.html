@@ -1,1 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEMENTED — Premium Grooming for Men of Color</title>
+<meta name="description" content="CEMENTED is the first premium grooming subscription built specifically for melanin-rich skin. Products formulated for darker skin tones, delivered monthly.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+<a href="#top" class="skip-link">Skip to main content</a>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- QUIZ OVERLAY -->
+<div class="quiz-ov" id="quizOv">
+  <div class="q-nav">
+    <div class="q-nav-logo">CEMENTED</div>
+    <div class="q-nav-label" id="qNavLabel">Build Your Box</div>
+    <button class="q-close" onclick="closeQuiz()">✕ Close</button>
+  </div>
+  <div class="q-prog"><div class="q-prog-fill" id="qProgFill"></div></div>
+  <div class="q-body">
+
+    <!-- INTRO -->
+    <div class="qscreen active" id="qscreen-intro">
+      <div class="q-intro">
+        <div class="q-intro-ey">Skin Intelligence</div>
+        <div class="q-intro-hl">BUILD YOUR<br><span class="qt">BOX.</span></div>
+        <div class="q-intro-sub">7 questions. Your personalized grooming ritual, built for your exact skin profile.</div>
+        <div class="q-meta">
+          <div class="q-meta-item"><div class="q-meta-n">7</div><div class="q-meta-l">Questions</div></div>
+          <div class="q-meta-item"><div class="q-meta-n">2</div><div class="q-meta-l">Minutes</div></div>
+          <div class="q-meta-item"><div class="q-meta-n">1</div><div class="q-meta-l">Perfect Box</div></div>
+        </div>
+        <button class="btn-p" onclick="qStart()" style="margin:0 auto;cursor:pointer">
+          Start the Quiz
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="qscreen" id="qscreen-questions">
+      <div class="q-hdr">
+        <div class="q-cnt">
+          <span id="qNumLabel">Question 1 of 7</span>
+          <div class="q-cnt-dots" id="qDots"></div>
+        </div>
+        <div class="q-hl" id="qHeadline"></div>
+        <div class="q-sb" id="qSub"></div>
+      </div>
+      <div class="opts-grid" id="optsGrid"></div>
+      <div class="q-nav-row">
+        <button class="q-back" id="qBackBtn" onclick="qBack()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M7 3l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <button class="q-next" id="qNextBtn" onclick="qNext()" disabled>
+          <span id="qNextLabel">Next</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="qscreen" id="qscreen-loading">
+      <div class="q-load-hl">BUILDING<br>YOUR BOX.</div>
+      <div class="q-bar-wrap"><div class="q-bar-fill" id="qBarFill"></div></div>
+      <div class="q-load-steps" id="qLoadSteps">
+        <div class="q-load-step"><div class="q-step-ind"></div>Analyzing your skin profile</div>
+        <div class="q-load-step"><div class="q-step-ind"></div>Matching targeted formulas</div>
+        <div class="q-load-step"><div class="q-step-ind"></div>Curating your lineup</div>
+        <div class="q-load-step"><div class="q-step-ind"></div>Personalizing your ritual card</div>
+      </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="qscreen" id="qscreen-email">
+      <div class="q-email-screen">
+        <div class="q-intro-ey">Your Box Is Ready</div>
+        <div class="q-intro-hl">ONE LAST<br><span class="qt">STEP.</span></div>
+        <div class="q-intro-sub">Drop your email and we'll send your personalized box summary plus first access when we launch.</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:28px">
+          <input class="q-email-input" type="email" id="qEmailInput" placeholder="your@email.com" aria-label="Email address"/>
+          <button class="btn-p" onclick="qSubmitEmail()" style="width:100%;justify-content:center;cursor:pointer">
+            See My Box
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button onclick="qShowResults()" style="background:none;border:none;color:rgba(196,163,108,.3);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;padding:8px">Skip for now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="qscreen" id="qscreen-results">
+      <div class="q-results">
+        <div class="q-res-grid">
+          <div class="q-res-l">
+            <div>
+              <div class="q-res-ey">Your Skin Type</div>
+              <div class="q-res-type" id="qResType">OILY SKIN</div>
+              <div class="q-res-typesub" id="qResTypeSub"></div>
+            </div>
+            <div style="margin-top:28px">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(0,0,0,.35);margin-bottom:5px">Primary Concern</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--raw);letter-spacing:2px" id="qResConcern"></div>
+            </div>
+          </div>
+          <div class="q-res-r">
+            <div>
+              <div class="q-res-ey">Your Profile</div>
+              <div class="q-profile-grid" id="qProfileGrid"></div>
+            </div>
+            <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,163,108,.28);margin-bottom:6px">Your Plan</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--terra)">ESSENTIAL · $39/MO</div>
+            </div>
+          </div>
+        </div>
+        <div class="q-box-section">
+          <div class="q-box-title">Your Box</div>
+          <div class="q-product-list" id="qProductList"></div>
+        </div>
+        <div class="q-res-cta">
+          <div>
+            <div class="q-cta-hl">YOUR BOX IS READY.</div>
+            <div class="q-cta-sub">Built for your exact skin profile. Ships in 3–5 business days. Cancel anytime.</div>
+            <div class="q-cta-price">
+              <div class="q-price-n" id="qCtaPrice">$39</div>
+              <div class="q-price-period">/ month · cancel anytime</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="q-btn-claim">
+              Claim My Box
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <button class="q-btn-retake" onclick="qRetake()">Retake quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">CEMENTED</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">The Problem</a>
+    <a href="#products">The Box</a>
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#" onclick="openQuiz();return false;" class="nav-cta">Build My Box</a>
+  </div>
+  <button class="hamburger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <a href="#about" onclick="closeMob()">The Problem</a>
+  <a href="#products" onclick="closeMob()">The Box</a>
+  <a href="#how" onclick="closeMob()">How It Works</a>
+  <a href="#pricing" onclick="closeMob()">Pricing</a>
+  <a href="#" onclick="closeMob();openQuiz();return false;" class="mob-nav-cta">Build My Box</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-l">
+    <div>
+      <div class="hero-eyebrow">Premium Grooming · Men of Color</div>
+      <div class="hero-h">YOUR<br>RITUAL.<br><span class="acc">CEMENTED.</span></div>
+      <div class="hero-sub">The first premium grooming subscription built specifically for melanin-rich skin. Products that actually work for you, delivered monthly.</div>
+      <div class="hero-btns">
+        <a href="#" onclick="openQuiz();return false;" class="btn-p">
+          Build My Box
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#products" class="btn-g">See What's Inside</a>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <div class="badge-txt">Founding Member Spots — <span id="spotsLeft">40</span> Left</div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-r-label"><span>The Gap</span></div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-n">40%</div>
+        <div class="stat-l">of American men are men of color — yet less than 5% of premium grooming brands target them</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-n">2×</div>
+        <div class="stat-l">men of color spend 2× more per grooming product, yet the premium market has barely served them</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-n">0</div>
+        <div class="stat-l">premium monthly subscriptions existed before CEMENTED built specifically for our skin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">YOUR RITUAL <span class="marquee-dot"></span></div>
+    <div class="marquee-item">CEMENTED <span class="marquee-dot"></span></div>
+    <div class="marquee-item">BUILT FOR YOUR SKIN <span class="marquee-dot"></span></div>
+    <div class="marquee-item">MELANIN-RICH FORMULAS <span class="marquee-dot"></span></div>
+    <div class="marquee-item">NO COMPROMISES <span class="marquee-dot"></span></div>
+    <div class="marquee-item">MONTHLY DELIVERY <span class="marquee-dot"></span></div>
+    <div class="marquee-item">YOUR RITUAL <span class="marquee-dot"></span></div>
+    <div class="marquee-item">CEMENTED <span class="marquee-dot"></span></div>
+    <div class="marquee-item">BUILT FOR YOUR SKIN <span class="marquee-dot"></span></div>
+    <div class="marquee-item">MELANIN-RICH FORMULAS <span class="marquee-dot"></span></div>
+    <div class="marquee-item">NO COMPROMISES <span class="marquee-dot"></span></div>
+    <div class="marquee-item">MONTHLY DELIVERY <span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<!-- ABOUT / PROBLEM -->
+<section class="s-problem" id="about">
+  <div class="reveal">
+    <div class="s-tag">The Problem</div>
+    <div class="s-hl">THE INDUSTRY<br>FORGOT ABOUT US.</div>
+    <div class="problem-body">
+      <p>Walk into any grooming aisle. Open any subscription box. The products are formulated for one skin type, and it's not ours. Sulfates that strip melanin-rich skin. Formulas that leave white residue. Products that weren't built with us in mind.</p>
+      <p>CEMENTED was built to fix that. Every product in your box is formulated for darker skin tones — addressing hyperpigmentation, uneven texture, coarse beard care, and sun protection that actually works on us.</p>
+    </div>
+    <div class="prob-stats reveal reveal-d2">
+      <div class="prob-stat">
+        <div class="prob-stat-n">$3.5B</div>
+        <div class="prob-stat-l">Men's grooming market</div>
+      </div>
+      <div class="prob-stat">
+        <div class="prob-stat-n">&lt;5%</div>
+        <div class="prob-stat-l">Targeting us</div>
+      </div>
+      <div class="prob-stat">
+        <div class="prob-stat-n">Day 1</div>
+        <div class="prob-stat-l">We fix that</div>
+      </div>
+    </div>
+  </div>
+  <div class="proof-stack reveal reveal-d2">
+    <div class="proof-block">
+      <div class="proof-block-tag">Formula Standard</div>
+      <div class="proof-block-hl">NO SULFATES.<br>BY DEFAULT.</div>
+      <div class="proof-block-body">Every cleanser and wash in the CEMENTED box is sulfate-free. Full stop. No stripping. No compromise for skin that already has to work harder.</div>
+    </div>
+    <div class="proof-block">
+      <div class="proof-block-tag">Tone Tested</div>
+      <div class="proof-block-hl">ZERO WHITE CAST.<br>GUARANTEED.</div>
+      <div class="proof-block-body">Every moisturizer and SPF is tested across the full melanin spectrum. If it leaves residue on darker tones, it doesn't make the box.</div>
+    </div>
+    <div class="proof-block">
+      <div class="proof-block-tag">Texture Specific</div>
+      <div class="proof-block-hl">COARSE HAIR.<br>COARSE FORMULAS.</div>
+      <div class="proof-block-body">Beard and hair products built for tighter curl patterns, higher porosity, and the specific concerns that come with textured hair.</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE BOX / PRODUCTS -->
+<section class="s-box" id="products">
+  <div class="s-box-hdr reveal">
+    <div>
+      <div class="s-tag">What's Inside</div>
+      <div class="s-hl">THE BOX.</div>
+    </div>
+    <div class="s-box-sub">4–5 products per box. Each chosen for melanin-rich skin. No filler, no guesswork.</div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card reveal">
+      <div class="pc-num">01</div>
+      <div class="pc-tag-wrap"><span class="pc-tag core">Core</span></div>
+      <div class="pc-name">THE WASH</div>
+      <div class="pc-desc">Sulfate-free daily cleanser. Removes buildup without stripping the natural oils that melanin-rich skin needs to stay balanced and healthy.</div>
+      <div class="pc-actives">
+        <span class="pc-active">Salicylic Acid</span>
+        <span class="pc-active">Aloe Vera</span>
+        <span class="pc-active">Glycerin</span>
+      </div>
+      <span class="pc-arrow">↗</span>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <div class="pc-num">02</div>
+      <div class="pc-tag-wrap"><span class="pc-tag core">Core</span></div>
+      <div class="pc-name">THE EVEN</div>
+      <div class="pc-desc">Targeted treatment serum for hyperpigmentation, post-inflammatory marks, and uneven tone — the three most common skin concerns we have.</div>
+      <div class="pc-actives">
+        <span class="pc-active">Vitamin C</span>
+        <span class="pc-active">Niacinamide</span>
+        <span class="pc-active">Alpha Arbutin</span>
+      </div>
+      <span class="pc-arrow">↗</span>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <div class="pc-num">03</div>
+      <div class="pc-tag-wrap"><span class="pc-tag core">Core</span></div>
+      <div class="pc-name">THE GUARD</div>
+      <div class="pc-desc">SPF 30 daily moisturizer with zero white cast. Mineral-hybrid formula tested on deep skin tones. The product the market forgot to make for us.</div>
+      <div class="pc-actives">
+        <span class="pc-active">SPF 30</span>
+        <span class="pc-active">Hyaluronic Acid</span>
+        <span class="pc-active">No White Cast</span>
+      </div>
+      <span class="pc-arrow">↗</span>
+    </div>
+    <div class="product-card reveal reveal-d3">
+      <div class="pc-num">04</div>
+      <div class="pc-tag-wrap"><span class="pc-tag prem">Rotating</span></div>
+      <div class="pc-name">THE SET</div>
+      <div class="pc-desc">Monthly rotating product based on your skin profile. Beard oil, recovery balm, exfoliant, or targeted treatment — personalized every single box.</div>
+      <div class="pc-actives">
+        <span class="pc-active">Quiz-Matched</span>
+        <span class="pc-active">Monthly Rotation</span>
+      </div>
+      <span class="pc-arrow">↗</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="s-how" id="how">
+  <div class="s-tag reveal">How It Works</div>
+  <div class="s-hl reveal">FOUR STEPS.<br>ONE RITUAL.</div>
+  <div class="how-grid">
+    <div class="how-step reveal">
+      <div class="how-step-n">1</div>
+      <div class="how-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="8" width="32" height="24" rx="2" stroke="#A0522D" stroke-width="1.5"/>
+          <line x1="4" y1="16" x2="36" y2="16" stroke="#A0522D" stroke-width="1"/>
+          <circle cx="12" cy="12" r="2" fill="#C4622D" opacity=".6"/>
+          <line x1="10" y1="24" x2="20" y2="24" stroke="#A0522D" stroke-width="1" opacity=".5"/>
+          <line x1="10" y1="28" x2="26" y2="28" stroke="#A0522D" stroke-width="1" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="how-title">TAKE THE QUIZ</div>
+      <div class="how-desc">2-minute skin intake. Tone, type, concerns, beard setup. We build your profile.</div>
+      <div class="how-connector"></div>
+    </div>
+    <div class="how-step reveal reveal-d1">
+      <div class="how-step-n">2</div>
+      <div class="how-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="16" r="8" stroke="#A0522D" stroke-width="1.5"/>
+          <path d="M8 34C8 27 12 24 20 24C28 24 32 27 32 34" stroke="#A0522D" stroke-width="1.5"/>
+          <line x1="20" y1="13" x2="20" y2="19" stroke="#A0522D" stroke-width="1.5"/>
+          <line x1="17" y1="16" x2="23" y2="16" stroke="#A0522D" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="how-title">WE CURATE</div>
+      <div class="how-desc">Your box is assembled to your profile. No generic picks. Formulas chosen for your exact needs.</div>
+      <div class="how-connector"></div>
+    </div>
+    <div class="how-step reveal reveal-d2">
+      <div class="how-step-n">3</div>
+      <div class="how-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect x="6" y="14" width="28" height="22" rx="2" stroke="#A0522D" stroke-width="1.5"/>
+          <path d="M12 14V10C12 7 15 5 20 5C25 5 28 7 28 10V14" stroke="#A0522D" stroke-width="1.5"/>
+          <path d="M14 24l4 4 8-8" stroke="#A0522D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="how-title">BOX ARRIVES</div>
+      <div class="how-desc">Delivered monthly. Premium packaging. Ritual card included. The unboxing is part of it.</div>
+      <div class="how-connector"></div>
+    </div>
+    <div class="how-step reveal reveal-d3">
+      <div class="how-step-n">4</div>
+      <div class="how-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="14" stroke="#A0522D" stroke-width="1.5"/>
+          <path d="M13 20l4 4 10-10" stroke="#A0522D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="how-title">BUILD THE HABIT</div>
+      <div class="how-desc">Follow your ritual card. Results compound over weeks. Adjust your box each month.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ CTA SPLIT -->
+<section class="s-quiz-cta">
+  <div class="quiz-cta-l reveal">
+    <div class="s-tag">Personalization</div>
+    <div class="s-hl">YOUR SKIN.<br>YOUR BOX.</div>
+    <div class="quiz-cta-sub">No two skin profiles are the same. The quiz takes 2 minutes and builds you a box that's genuinely different from anyone else's.</div>
+    <a href="#" onclick="openQuiz();return false;" class="btn-p">
+      Take the Skin Quiz
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="quiz-cta-r">
+    <div class="quiz-steps-preview">
+      <div class="qsp-item"><span class="qsp-n">01</span><span class="qsp-label">Skin tone &amp; type</span></div>
+      <div class="qsp-item"><span class="qsp-n">02</span><span class="qsp-label">Primary concern</span></div>
+      <div class="qsp-item"><span class="qsp-n">03</span><span class="qsp-label">Beard style</span></div>
+      <div class="qsp-item"><span class="qsp-n">04</span><span class="qsp-label">Sensitivity level</span></div>
+      <div class="qsp-item"><span class="qsp-n">05</span><span class="qsp-label">Routine goal</span></div>
+    </div>
+    <div class="qsp-cta">
+      <button onclick="openQuiz()">
+        Build My Box
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="s-pricing" id="pricing">
+  <div class="s-tag reveal">Membership</div>
+  <div class="s-hl reveal">CHOOSE<br>YOUR PLAN.</div>
+  <div class="pricing-grid">
+    <div class="p-card reveal">
+      <div class="p-tier">Monthly</div>
+      <div class="p-price">$39</div>
+      <div class="p-period">per month · cancel anytime</div>
+      <div class="p-div"></div>
+      <ul class="p-features">
+        <li>The Wash, The Even, The Guard, The Set</li>
+        <li>Skin quiz + personalized curation</li>
+        <li>Skip or pause anytime</li>
+        <li>Ritual card with every box</li>
+      </ul>
+      <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="p-btn p-btn-outline">Get Started</a>
+    </div>
+    <div class="p-card feat reveal reveal-d1">
+      <div class="p-badge">Best Value</div>
+      <div class="p-tier">Annual</div>
+      <div class="p-price">$399</div>
+      <div class="p-period">per year · $33/mo effective</div>
+      <div class="p-div"></div>
+      <ul class="p-features">
+        <li>The Wash, The Even, The Guard, The Set</li>
+        <li>Skin quiz + personalized curation</li>
+        <li>Founding member badge + early access</li>
+        <li>First access to new product lines</li>
+        <li>Lock in founding member pricing forever</li>
+      </ul>
+      <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="p-btn p-btn-dark">Lock It In</a>
+    </div>
+  </div>
+  <div class="founding-strip reveal">
+    <div class="founding-strip-hl">FOUNDING MEMBER OFFER</div>
+    <div class="founding-strip-body">Only 40 founding member spots. Lock in your price before they're gone. <strong><span id="spotsLeft2">40</span> spots remaining.</strong></div>
+    <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="btn-p" style="margin-left:auto;cursor:pointer">Claim Your Spot →</a>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="s-proof" id="testimonials">
+  <div class="proof-header reveal">
+    <div>
+      <div class="s-tag">Early Feedback</div>
+      <div class="s-hl">WHAT THEY SAID.</div>
+    </div>
+    <div class="proof-note">From early testers &amp; beta users</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi reveal">
+      <div class="testi-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span></div>
+      <div class="testi-text">"Finally. A brand that didn't make me feel like an afterthought. The moisturizer has zero cast on my skin and I've been looking for that for three years."</div>
+      <div class="testi-auth">
+        <div class="testi-av">M</div>
+        <div>
+          <span class="testi-name">Marcus T.</span>
+          <div class="testi-sub">Beta tester · Atlanta</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi reveal reveal-d1">
+      <div class="testi-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span></div>
+      <div class="testi-text">"The bump defense serum is real. I've tried everything for razor bumps. Two weeks in and I can already see the difference. I'm not going back."</div>
+      <div class="testi-auth">
+        <div class="testi-av">D</div>
+        <div>
+          <span class="testi-name">Darius W.</span>
+          <div class="testi-sub">Beta tester · Houston</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi reveal reveal-d2">
+      <div class="testi-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span></div>
+      <div class="testi-text">"The quiz actually knew what it was doing. My box was different from my brother's even though we both started with the same skin type. That's the detail that matters."</div>
+      <div class="testi-auth">
+        <div class="testi-av">J</div>
+        <div>
+          <span class="testi-name">Jordan K.</span>
+          <div class="testi-sub">Beta tester · Chicago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RITUAL CTA -->
+<section class="s-ritual">
+  <div class="ritual-inner">
+    <div class="ritual-hl">CEMENT<br>YOUR RITUAL.</div>
+    <div class="ritual-sub">Stop using products that weren't made for you. Start a grooming ritual built from the ground up for your skin.</div>
+    <a href="https://buy.stripe.com/test_5kQfZj60saOo1CvaPA6J200" target="_blank" class="ritual-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Start Your Box Today
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">CEMENTED</div>
+      <div class="footer-desc">Premium grooming subscription built for every man who takes his skin seriously. Your ritual, cemented.</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <ul>
+        <li><a href="#products">The Box</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#" onclick="openQuiz();return false;">Skin Quiz</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul>
+        <li><a href="#about">Our Mission</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2025 CEMENTED · All Rights Reserved</div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/becemented" target="_blank">Instagram</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
