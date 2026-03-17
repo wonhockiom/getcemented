@@ -358,6 +358,7 @@ footer{background:#0D0906;padding:80px;border-top:1px solid var(--border)}
   .marquee-track{animation:none;transform:none}
 }
 
+/* ── TABLET (≤900px) ── */
 @media(max-width:900px){
   nav{padding:0 24px}
   .nav-links{display:none}
@@ -365,23 +366,116 @@ footer{background:#0D0906;padding:80px;border-top:1px solid var(--border)}
   .mob-nav{display:flex}
   .hero{grid-template-columns:1fr}
   .hero-r{display:none}
-  .hero-l{padding:120px 32px 64px}
-  .s-problem{grid-template-columns:1fr;gap:48px;padding:80px 32px}
+  .hero-l{padding:110px 28px 56px}
+  .s-problem{grid-template-columns:1fr;gap:48px;padding:80px 28px}
   .prob-stats{grid-template-columns:1fr 1fr}
-  .s-box{padding:80px 32px}
+  .s-box{padding:80px 28px}
   .product-grid{grid-template-columns:1fr}
-  .s-how{padding:80px 32px}
+  .s-how{padding:80px 28px}
   .how-grid{grid-template-columns:1fr 1fr}
   .s-quiz-cta{grid-template-columns:1fr}
-  .quiz-cta-r{min-height:360px}
-  .s-pricing{padding:80px 32px}
-  .pricing-grid,.testi-grid{grid-template-columns:1fr}
+  .quiz-cta-r{min-height:320px;padding:60px 28px}
+  .quiz-cta-l{padding:72px 28px}
+  .s-pricing{padding:80px 28px}
+  .pricing-grid{grid-template-columns:1fr}
   .p-card.feat{transform:none}
-  .s-proof{padding:80px 32px}
-  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
-  footer{padding:60px 32px}
-  .s-ritual{padding:80px 32px}
-  .quiz-cta-l{padding:80px 32px}
+  .s-ritual{padding:80px 28px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  footer{padding:60px 28px}
   .founding-strip{flex-direction:column;align-items:flex-start;gap:16px}
   .founding-strip .btn-p{margin-left:0}
+  /* Quiz overlay */
+  .q-nav{padding:0 24px}
+  .q-res-grid{grid-template-columns:1fr}
+}
+
+/* ── MOBILE (≤600px) ── */
+@media(max-width:600px){
+  /* Nav */
+  nav{height:60px;padding:0 20px}
+  .nav-logo{font-size:20px;letter-spacing:5px}
+  .mob-nav{top:60px;padding:16px 20px 24px}
+  .mob-nav a{font-size:11px;padding:13px 0}
+
+  /* Hero */
+  .hero-l{padding:96px 20px 48px}
+  .hero-eyebrow{font-size:10px;letter-spacing:4px;margin-bottom:20px}
+  .hero-h{font-size:clamp(64px,18vw,96px)}
+  .hero-sub{font-size:15px;line-height:1.7;max-width:100%}
+  .hero-btns{flex-direction:column;gap:12px;margin-top:32px}
+  .btn-p,.btn-g{width:100%;justify-content:center;padding:16px 24px}
+  .hero-badge{padding:10px 14px}
+  .badge-txt{font-size:10px;letter-spacing:2px}
+
+  /* Sections */
+  .s-problem{padding:60px 20px;gap:36px}
+  .s-hl{font-size:clamp(40px,11vw,64px)}
+  .problem-body{font-size:15px}
+  .prob-stats{grid-template-columns:1fr;margin-top:36px}
+  .prob-stat-n{font-size:40px}
+  .proof-block{padding:28px 24px}
+
+  /* Box / Products */
+  .s-box{padding:60px 20px}
+  .s-box-hdr{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:40px}
+  .s-box-sub{text-align:left;max-width:100%}
+  .product-card{padding:36px 28px}
+  .pc-name{font-size:36px}
+  .pc-desc{font-size:14px}
+
+  /* How it works */
+  .s-how{padding:60px 20px}
+  .how-grid{grid-template-columns:1fr;border:none}
+  .how-step{border:1px solid var(--border);margin-bottom:3px;border-right:1px solid var(--border);padding:36px 28px}
+  .how-step:last-child{border-right:1px solid var(--border)}
+  .how-connector{display:none}
+  .how-title{font-size:24px}
+
+  /* Quiz CTA */
+  .s-quiz-cta{grid-template-columns:1fr}
+  .quiz-cta-l{padding:56px 20px}
+  .quiz-cta-l .s-hl{font-size:clamp(44px,12vw,72px)}
+  .quiz-cta-sub{font-size:15px}
+  .quiz-cta-r{min-height:260px;padding:40px 20px}
+  .quiz-steps-preview{gap:10px;max-width:100%}
+  .qsp-item{padding:12px 16px}
+  .qsp-label{font-size:14px}
+  .qsp-cta{max-width:100%}
+
+  /* Pricing */
+  .s-pricing{padding:60px 20px}
+  .p-card{padding:40px 28px}
+  .p-price{font-size:64px}
+  .founding-strip{padding:24px 20px}
+
+  /* Ritual */
+  .s-ritual{padding:64px 20px;min-height:auto}
+  .ritual-hl{font-size:clamp(56px,14vw,96px)}
+  .ritual-sub{font-size:15px}
+  .ritual-btn{width:100%;justify-content:center;padding:16px 24px}
+
+  /* Footer */
+  footer{padding:48px 20px}
+  .footer-top{grid-template-columns:1fr;gap:36px}
+  .footer-brand{font-size:32px;letter-spacing:4px}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+
+  /* Quiz overlay */
+  .q-nav{padding:0 16px;height:56px}
+  .q-nav-logo{font-size:16px;letter-spacing:4px}
+  .q-nav-label{font-size:11px;letter-spacing:2px}
+  .q-close{font-size:11px;padding:6px 14px}
+  .q-body{padding:40px 16px}
+  .opts-grid.c2{grid-template-columns:1fr 1fr}
+  .opts-grid.c3{grid-template-columns:1fr 1fr}
+  .opt-card{padding:16px 14px}
+  .opt-title{font-size:14px}
+  .q-hl{font-size:clamp(28px,7vw,40px)}
+  .q-intro-hl{font-size:clamp(48px,13vw,72px)}
+  .q-res-grid{grid-template-columns:1fr}
+  .q-res-l,.q-res-r{padding:36px 28px}
+  .q-box-section,.q-res-cta{padding:28px 20px}
+  .q-res-cta{flex-direction:column;align-items:flex-start}
+  .q-btn-claim{width:100%;justify-content:center}
+  .q-price-n{font-size:40px}
 }
