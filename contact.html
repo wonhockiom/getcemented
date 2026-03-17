@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — CEMENTED</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cement: #E8D5B7;
+  --cement-dark: #999180;
+  --raw: #000000;
+  --raw-mid: #0A0A0A;
+  --raw-light: #111111;
+  --terra: #C4622D;
+  --terra-light: #E07848;
+  --dust: #0D0D0D;
+  --white: #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--raw);
+  color: var(--cement);
+  overflow-x: hidden;
+  cursor: none;
+  min-height: 100vh;
+}
+
+/* CURSOR */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--terra);
+  border-radius: 50%;
+  position: fixed; top: -100px; left: -100px;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s;
+  opacity: 0;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(196,98,45,0.5);
+  border-radius: 50%;
+  position: fixed; top: -100px; left: -100px;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: transform 0.15s ease-out;
+}
+body:hover .cursor { opacity: 1; }
+
+/* NOISE */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  pointer-events: none; z-index: 1000;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  background: transparent;
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+nav.scrolled {
+  background: rgba(30,26,22,0.92);
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 7px;
+  color: var(--cement); text-decoration: none;
+}
+.nav-logo:hover { color: var(--terra); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--cement-dark);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cement); }
+.nav-cta {
+  background: var(--terra) !important;
+  color: var(--white) !important;
+  padding: 10px 22px !important;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--terra-light) !important; transform: translateY(-1px); }
+
+/* PAGE */
+.contact-page {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 120px 24px 80px;
+}
+
+.contact-inner {
+  width: 100%; max-width: 620px;
+}
+
+.contact-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px; font-weight: 400; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--terra);
+  margin-bottom: 16px;
+}
+
+.contact-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 8vw, 80px);
+  letter-spacing: 3px; line-height: 1;
+  color: var(--cement);
+  margin-bottom: 12px;
+}
+
+.contact-sub {
+  font-size: 15px; font-weight: 300;
+  color: var(--cement-dark); line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.contact-sub a {
+  color: var(--terra); text-decoration: none;
+}
+.contact-sub a:hover { text-decoration: underline; }
+
+/* FORM */
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+
+.form-group label {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px; font-weight: 400; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--cement-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--raw-mid);
+  border: 1px solid rgba(212,201,184,0.12);
+  border-radius: 2px;
+  padding: 14px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; color: var(--cement);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(212,201,184,0.3);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--terra);
+}
+
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8A99A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+
+.form-group select option {
+  background: var(--raw-mid);
+  color: var(--cement);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form-submit {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 8px;
+}
+
+.btn-submit {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--terra); color: var(--white);
+  border: none; border-radius: 2px;
+  padding: 16px 36px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: flex; align-items: center; gap: 10px;
+}
+.btn-submit:hover { background: var(--terra-light); transform: translateY(-1px); }
+
+.form-note {
+  font-size: 12px; color: rgba(212,201,184,0.35);
+  line-height: 1.5;
+}
+
+/* SUCCESS STATE */
+.success-msg {
+  display: none;
+  text-align: center;
+  padding: 48px 0;
+}
+.success-msg .success-icon {
+  font-size: 40px; margin-bottom: 20px;
+}
+.success-msg h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 3px;
+  color: var(--cement); margin-bottom: 10px;
+}
+.success-msg p {
+  font-size: 15px; color: var(--cement-dark);
+}
+
+/* DIVIDER */
+.contact-divider {
+  width: 100%; height: 1px;
+  background: rgba(212,201,184,0.08);
+  margin: 48px 0;
+}
+
+.contact-direct {
+  display: flex; gap: 40px; flex-wrap: wrap;
+}
+.contact-direct-item { display: flex; flex-direction: column; gap: 4px; }
+.contact-direct-item span {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px; font-weight: 400; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--terra);
+}
+.contact-direct-item a {
+  font-size: 14px; color: var(--cement);
+  text-decoration: none;
+}
+.contact-direct-item a:hover { color: var(--terra-light); }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid rgba(212,201,184,0.08);
+  font-size: 12px; color: rgba(212,201,184,0.35);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-submit { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index (10).html" class="nav-logo">CEMENTED</a>
+  <div class="nav-links">
+    <a href="index (10).html#about">About</a>
+    <a href="index (10).html#products">The Box</a>
+    <a href="index (10).html#how">How It Works</a>
+    <a href="index (10).html#pricing">Pricing</a>
+    <a href="index (10).html" onclick="" class="nav-cta">Build My Box</a>
+  </div>
+</nav>
+
+<!-- CONTACT PAGE -->
+<main class="contact-page">
+  <div class="contact-inner">
+
+    <div class="contact-tag">Get In Touch</div>
+    <h1 class="contact-headline">CONTACT US</h1>
+    <p class="contact-sub">
+      Questions about your box, ingredients, or anything else — we're here.<br>
+      Fill out the form and we'll get back to you within 24–48 hours.
+    </p>
+
+    <!-- FORM -->
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mwvnnbqo" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Jordan" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" placeholder="Davis" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select a topic</option>
+          <option value="order">Order / Shipping</option>
+          <option value="box">My Box & Products</option>
+          <option value="founding">Founding Member</option>
+          <option value="partnership">Partnership / Press</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">
+          Send Message
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="form-note">We reply within 24–48 hours.</p>
+      </div>
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">✓</div>
+      <h3>MESSAGE SENT</h3>
+      <p>We'll get back to you within 24–48 hours.</p>
+    </div>
+
+    <div class="contact-divider"></div>
+
+    <div class="contact-direct">
+      <div class="contact-direct-item">
+        <span>Response Time</span>
+        <a>24–48 hours</a>
+      </div>
+      <div class="contact-direct-item">
+        <span>Based In</span>
+        <a>United States</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>© 2025 CEMENTED · All Rights Reserved</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top = e.clientY + 'px';
+  ring.style.opacity = '1';
+});
+
+// Nav scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Form submit — Formspree
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST', body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch {
+    alert('Something went wrong. Please try again.');
+  }
+});
+</script>
+</body>
+</html>
